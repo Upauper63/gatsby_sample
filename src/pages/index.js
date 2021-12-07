@@ -1,13 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
-import A from "../components/A"
+import Tests from "../components/Tests"
 
 const Home = () => {
   return (
     <>
-      <div>Hello world!</div>
-      <A />
-      <a><Link to="/app">App.js</Link></a>
+      <Tests />
     </>
   )
 }

@@ -1,12 +1,11 @@
 exports.createPages = ({ actions: { createPage } }) => {
-    const products = require("./src/data/products.json");
-    products.forEach(product => {
+    const cards = require("./src/data/VOW.json");
+    cards.forEach(card => {
         createPage({
-            path: `/product/${product.slug}`,
-            component: require.resolve('./src/templates/Product.js'),
+            path: `/cards/${card.name}`,
+            component: require.resolve('./src/templates/Detail.js'),
             context: {
-                title: product.title,
-                content: product.content,
+                foreignData: card.foreignData,
             }
         })
     })

@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, Link, useStaticQuery } from 'gatsby'
 import React from 'react'
 
 const List = () => {
@@ -7,7 +7,7 @@ const List = () => {
             allVowJson {
                 edges {
                     node {
-                        artist
+                        name
                         foreignData{
                             language
                             name
@@ -18,19 +18,20 @@ const List = () => {
         }`
         )
     const items = data.allVowJson.edges
-    const jp_filter = (language, name) => {if(language === 'Japanese') return name}
+    console.log(items)
+    const jp_filter = (item) => {if(item.language === 'Japanese') return item.name}
     return (
-        <div>
+        <>
             {items.map(item => (
                 <div>
-                    <p>
+                    <a><Link to={'/cards/' + item.node.name}>
                         {item.node.foreignData.map(item=>
-                            (jp_filter(item.language, item.name))
+                            (jp_filter(item))
                         )}
-                    </p>
+                    </Link></a>
                 </div>
             ))}
-        </div>
+        </>
     )
 }
 
